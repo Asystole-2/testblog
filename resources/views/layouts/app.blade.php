@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('app.name', 'Bible Study Blog') }}</title>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
@@ -21,12 +21,16 @@
         <div class="container mx-auto flex justify-between items-center px-6">
             <div>
                 <a href="{{ url('/') }}" class="text-lg font-semibold text-gray-100 no-underline">
-                    {{ config('app.name', 'Laravel') }}
+                    {{ config('app.name', 'Bible Study Blog') }}
                 </a>
             </div>
             <nav class="space-x-4 text-gray-300 text-sm sm:text-base">
                 <a class="no-underline hover:underline" href="/">Home</a>
                 <a class="no-underline hover:underline" href="/blog">Blog</a>
+                <a class="no-underline hover:underline" href="/devotion">Devotions</a>
+                <a class="no-underline hover:underline" href="/study">Bible Studies</a>
+                <a class="no-underline hover:underline" href="/about">About</a>
+
                 @guest
                     <a class="no-underline hover:underline" href="{{ route('login') }}">{{ __('Login') }}</a>
                     @if (Route::has('register'))
@@ -47,13 +51,13 @@
         </div>
     </header>
 
-    <div>
+    <main class="container mx-auto mt-6 px-6">
         @yield('content')
-    </div>
+    </main>
 
-    <div>
+    <footer class="bg-gray-800 text-gray-300 py-4 mt-6 text-center">
         @include('layouts.footer')
-    </div>
+    </footer>
 </div>
 </body>
 </html>
