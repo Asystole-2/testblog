@@ -3,15 +3,18 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Devotion;
 
 class DevotionController extends Controller
 {
     public function index()
     {
-        $devotions = [
-            ['title' => 'God’s Love', 'content' => 'God’s love is unconditional...'],
-            ['title' => 'Trust in the Lord', 'content' => 'Trust in the Lord with all your heart...']
-        ];
+        $devotions = Devotion::orderBy('date', 'desc')->get();
         return view('devotion.index', compact('devotions'));
+    }
+
+    public function show(Devotion $devotion)
+    {
+        return view('devotion.show', compact('devotion'));
     }
 }

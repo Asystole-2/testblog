@@ -3,17 +3,18 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Study;
 
 class StudyController extends Controller
 {
     public function index()
     {
-        $topics = ['Faith', 'Salvation', 'Prayer', 'Holy Spirit'];
-        return view('study.index', compact('topics'));
+        $studies = Study::all();
+        return view('study.index', compact('studies'));
     }
 
-    public function show($topic)
+    public function show(Study $study)
     {
-        return view('study.topic', ['topic' => ucfirst($topic)]);
+        return view('study.show', compact('study'));
     }
 }
