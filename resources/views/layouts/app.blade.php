@@ -27,8 +27,8 @@
             <nav class="space-x-6 text-gray-300 text-sm sm:text-base">
                 <a class="no-underline hover:text-white transition" href="/">Home</a>
                 <a class="no-underline hover:text-white transition" href="{{ route('blog.index') }}">Blog</a>
-                <a class="no-underline hover:text-white transition" href="{{ route('devotions.index') }}">Devotions</a>
-                <a class="no-underline hover:text-white transition" href="{{ route('studies.index') }}">Bible Studies</a>
+                <a class="no-underline hover:text-white transition" href="{{ route('devotion.index') }}">Devotions</a>
+                <a class="no-underline hover:text-white transition" href="{{ route('study.index') }}">Bible Studies</a>
                 <a class="no-underline hover:text-white transition" href="{{ route('about') }}">About</a>
 
                 @guest
@@ -56,7 +56,6 @@
 
     <footer class="bg-gray-900 text-gray-300 py-6 mt-6 text-center text-sm">
         <p>&copy; {{ date('Y') }} Bible Study Blog. All rights reserved.</p>
-        <p><a href="{{ route('contact') }}" class="hover:underline">Contact Us</a></p>
     </footer>
 </div>
 </body>

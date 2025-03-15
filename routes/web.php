@@ -15,14 +15,12 @@ Route::get('/', [HomeController::class, 'index']);
 Route::get('/bible', [BibleController::class, 'index']);
 Route::get('/bible/{verse}', [BibleController::class, 'show']);
 
-Route::get('/study', [StudyController::class, 'index']);
-Route::get('/study/{study}', [StudyController::class, 'show']);
 
-Route::get('/devotion', [DevotionController::class, 'index']);
-Route::get('/devotion/{devotion}', [DevotionController::class, 'show']);
+Route::get('/study', [StudyController::class, 'index'])->name('study.index');
+Route::get('/devotions', [DevotionController::class, 'index'])->name('devotion.index');
+Route::get('/devotions/{id}', [DevotionController::class, 'show'])->name('devotion.show');
 
-Route::get('/about', [AboutController::class, 'index']);
-/*
+Route::get('/about', [AboutController::class, 'index'])->name('about');/*
 |--------------------------------------------------------------------------
 | Web Routes
 |--------------------------------------------------------------------------

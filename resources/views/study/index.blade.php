@@ -1,7 +1,10 @@
 @extends('layouts.app')
 
 @section('content')
-    <h1>{{ $study->topic }}</h1>
-    <p>{{ $study->description }}</p>
-    <a href="{{ url('/study') }}">Back to Studies</a>
+    <h1>Bible Studies</h1>
+    <ul>
+        @foreach($studies as $study)
+            <li>{{ $study->title }}</li>
+        @endforeach
+    </ul>
 @endsection
