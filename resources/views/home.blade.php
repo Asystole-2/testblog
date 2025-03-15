@@ -1,57 +1,103 @@
 @extends('layouts.app')
 
 @section('content')
-    <main class="sm:container sm:mx-auto sm:mt-10">
-        <div class="w-full sm:px-6">
-
-            @if (session('status'))
-                <div class="text-sm border border-t-8 rounded text-amber-700 border-amber-600 bg-amber-100 px-3 py-4 mb-4 font-script" role="alert">
-                    ✝️ {{ session('status') }}
-                </div>
-            @endif
-
-            <section class="flex flex-col break-words bg-white sm:border-1 sm:rounded-md sm:shadow-lg" style="background-image: url('data:image/svg+xml;utf8,<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 100\" opacity=\"0.1\"><text x=\"50%\" y=\"55%\" dominant-baseline=\"middle\" text-anchor=\"middle\" font-size=\"40\">✟</text></svg>')">
-
-            <header class="font-semibold bg-indigo-800 text-gold py-5 px-6 sm:py-6 sm:px-8 sm:rounded-t-md border-b-4 border-gold">
-                <div class="flex items-center">
-                    <svg class="w-8 h-8 mr-3" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M12 2L4 5v6.09c0 5.05 3.41 9.76 8 10.91 4.59-1.15 8-5.86 8-10.91V5l-8-3zm0 15.08c-2.21 0-4-1.78-4-3.97 0-1.04.81-2.3 2.01-3.51L12 8.86l1.99 1.74c1.2 1.21 2.01 2.47 2.01 3.51 0 2.19-1.79 3.97-4 3.97z"/>
-                    </svg>
-                    <h1 class="text-2xl font-bold font-serif">Faith Journey Dashboard</h1>
-                </div>
-                <p class="mt-2 text-sm font-normal">"I can do all things through Christ who strengthens me" - Philippians 4:13</p>
-            </header>
-
-            <div class="w-full p-6 bg-parchment">
-                <div class="max-w-2xl mx-auto text-center">
-                    <p class="text-lg text-charcoal font-serif mb-4">
-                        🙏 Welcome, faithful servant! May your day be blessed with wisdom and grace.
-                    </p>
-                    <div class="mt-6 p-4 bg-eggshell rounded-lg shadow-inner border border-gray-200">
-                        <h3 class="font-bold text-maroon mb-2">Today's Scripture</h3>
-                        <p class="italic text-gray-700">"Your word is a lamp for my feet, a light on my path."</p>
-                        <p class="text-right text-gray-600 mt-2">- Psalm 119:105 (NIV)</p>
-                    </div>
-                    <div class="mt-6">
-                        <a href="{{ route('bible.study') }}" class="bg-indigo-700 hover:bg-indigo-600 text-white font-bold py-2 px-4 rounded-full transition-colors duration-300">
-                            📖 Begin Daily Study
-                        </a>
-                    </div>
-                </div>
-            </div>
-            </section>
+    <!-- Hero Section -->
+    <div class="relative h-screen flex items-center justify-center text-center text-gray-100 bg-cover bg-center"
+         style="background-image: url('https://images.unsplash.com/photo-1583485088034-697b5bc54ccd?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');">
+        <div class="absolute inset-0 bg-black bg-opacity-50"></div>
+        <div class="relative z-10 w-4/5">
+            <h1 class="text-5xl font-extrabold uppercase leading-tight drop-shadow-lg">
+                Discover the Depths of God’s Word
+            </h1>
+            <p class="mt-5 text-lg text-gray-300">
+                Study the Scriptures, grow in faith, and deepen your walk with Christ.
+            </p>
+            <a href="/blog"
+               class="mt-6 inline-block bg-amber-600 hover:bg-amber-700 text-white text-lg font-bold py-3 px-6 rounded-lg transition duration-300">
+                Start Studying
+            </a>
         </div>
-    </main>
-@endsection
+    </div>
 
-@push('styles')
-    <style>
-        .font-script { font-family: 'Cinzel Decorative', 'Times New Roman', serif; }
-        .font-serif { font-family: 'Merriweather', 'Times New Roman', serif; }
-        .bg-parchment { background-color: #faf4e1; }
-        .text-gold { color: #c5a047; }
-        .text-maroon { color: #800000; }
-        .bg-eggshell { background-color: #f0ead6; }
-        .text-charcoal { color: #36454f; }
-    </style>
-@endpush
+    <!-- About Section -->
+    <div class="container mx-auto py-16 px-6 sm:px-12">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+            <div class="rounded-lg shadow-lg overflow-hidden">
+                <img src="https://images.unsplash.com/photo-1583485088034-697b5bc54ccd"
+                     class="w-full h-full object-cover" alt="Ancient Bible">
+            </div>
+            <div>
+                <h2 class="text-4xl font-bold text-gray-800">
+                    Unlocking Biblical Truths
+                </h2>
+                <p class="mt-4 text-gray-600 text-lg leading-relaxed">
+                    Our mission is to guide you through in-depth Bible study, uncovering historical context, spiritual depth, and life-changing wisdom from God’s Word.
+                </p>
+                <a href="/study"
+                   class="mt-6 inline-block bg-amber-600 hover:bg-amber-700 text-white text-lg font-semibold py-3 px-8 rounded-lg transition duration-300">
+                    Learn More
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Study Categories -->
+    <div class="bg-slate-800 text-white text-center py-16">
+        <h2 class="text-3xl font-bold">Study Focus Areas</h2>
+        <div class="mt-6 grid grid-cols-1 md:grid-cols-4 gap-6 px-6 sm:px-12">
+            <div class="p-6 bg-slate-700 hover:bg-slate-600 transition duration-300 rounded-lg">
+                <h3 class="text-2xl font-semibold">Biblical Exegesis</h3>
+                <p class="mt-2 text-sm">Deep dive into Scripture interpretation</p>
+            </div>
+            <div class="p-6 bg-slate-700 hover:bg-slate-600 transition duration-300 rounded-lg">
+                <h3 class="text-2xl font-semibold">Historical Context</h3>
+                <p class="mt-2 text-sm">Exploring the cultural & historical backdrop</p>
+            </div>
+            <div class="p-6 bg-slate-700 hover:bg-slate-600 transition duration-300 rounded-lg">
+                <h3 class="text-2xl font-semibold">Devotional Guides</h3>
+                <p class="mt-2 text-sm">Daily encouragement & reflections</p>
+            </div>
+            <div class="p-6 bg-slate-700 hover:bg-slate-600 transition duration-300 rounded-lg">
+                <h3 class="text-2xl font-semibold">Theological Studies</h3>
+                <p class="mt-2 text-sm">Understanding key doctrines of faith</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Latest Devotions -->
+    <div class="bg-white text-center py-16">
+        <div class="w-4/5 mx-auto">
+            <span class="uppercase text-sm text-amber-600 font-bold">
+                Recent Studies
+            </span>
+            <h2 class="text-4xl font-bold py-5 text-gray-800">
+                Latest Devotionals
+            </h2>
+            <p class="m-auto text-gray-600 text-lg leading-relaxed w-3/4">
+                Stay up-to-date with our latest biblical reflections, scriptural insights, and devotional readings to enrich your faith journey.
+            </p>
+        </div>
+    </div>
+
+    <!-- Featured Study -->
+    <div class="sm:grid grid-cols-2 w-4/5 m-auto bg-white rounded-lg shadow-xl overflow-hidden">
+        <div class="flex bg-slate-900 text-gray-100 pt-10 px-6">
+            <div class="m-auto w-full">
+                <span class="uppercase text-xs text-amber-400 font-bold">
+                    Genesis Study
+                </span>
+                <h3 class="text-2xl font-bold py-5">
+                    Exploring Creation Narratives: A Comparative Study of Genesis 1-3
+                </h3>
+                <a href="/study/genesis"
+                   class="inline-block border-2 border-amber-400 hover:bg-amber-400 text-amber-400 hover:text-white text-xs font-bold py-3 px-6 rounded-lg transition duration-300">
+                    Read Study
+                </a>
+            </div>
+        </div>
+        <div class="h-96 bg-cover bg-center"
+             style="background-image: url('https://images.unsplash.com/photo-1554693189-9d9a6cd4f251')">
+        </div>
+    </div>
+
+@endsection
