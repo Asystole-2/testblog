@@ -17,30 +17,29 @@
 </head>
 <body class="bg-gray-100 h-screen antialiased leading-none font-sans">
 <div id="app">
-    <header class="bg-gray-800 py-6">
+    <header class="bg-gray-900 py-6 shadow-md">
         <div class="container mx-auto flex justify-between items-center px-6">
             <div>
-                <a href="{{ url('/') }}" class="text-lg font-semibold text-gray-100 no-underline">
+                <a href="{{ url('/') }}" class="text-xl font-bold text-white no-underline">
                     {{ config('app.name', 'Bible Study Blog') }}
                 </a>
             </div>
-            <nav class="space-x-4 text-gray-300 text-sm sm:text-base">
-                <a class="no-underline hover:underline" href="/">Home</a>
-                <a class="no-underline hover:underline" href="/blog">Blog</a>
-                <a class="no-underline hover:underline" href="/devotion">Devotions</a>
-                <a class="no-underline hover:underline" href="/study">Bible Studies</a>
-                <a class="no-underline hover:underline" href="/about">About</a>
+            <nav class="space-x-6 text-gray-300 text-sm sm:text-base">
+                <a class="no-underline hover:text-white transition" href="/">Home</a>
+                <a class="no-underline hover:text-white transition" href="{{ route('blog.index') }}">Blog</a>
+                <a class="no-underline hover:text-white transition" href="{{ route('devotions.index') }}">Devotions</a>
+                <a class="no-underline hover:text-white transition" href="{{ route('studies.index') }}">Bible Studies</a>
+                <a class="no-underline hover:text-white transition" href="{{ route('about') }}">About</a>
 
                 @guest
-                    <a class="no-underline hover:underline" href="{{ route('login') }}">{{ __('Login') }}</a>
+                    <a class="no-underline hover:text-white transition" href="{{ route('login') }}">{{ __('Login') }}</a>
                     @if (Route::has('register'))
-                        <a class="no-underline hover:underline" href="{{ route('register') }}">{{ __('Register') }}</a>
+                        <a class="no-underline hover:text-white transition" href="{{ route('register') }}">{{ __('Register') }}</a>
                     @endif
                 @else
-                    <span>{{ Auth::user()->name }}</span>
-
+                    <span class="text-gray-300 font-semibold">{{ Auth::user()->name }}</span>
                     <a href="{{ route('logout') }}"
-                       class="no-underline hover:underline"
+                       class="no-underline hover:text-white transition"
                        onclick="event.preventDefault();
                                 document.getElementById('logout-form').submit();">{{ __('Logout') }}</a>
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="hidden">
@@ -55,8 +54,9 @@
         @yield('content')
     </main>
 
-    <footer class="bg-gray-800 text-gray-300 py-4 mt-6 text-center">
-        @include('layouts.footer')
+    <footer class="bg-gray-900 text-gray-300 py-6 mt-6 text-center text-sm">
+        <p>&copy; {{ date('Y') }} Bible Study Blog. All rights reserved.</p>
+        <p><a href="{{ route('contact') }}" class="hover:underline">Contact Us</a></p>
     </footer>
 </div>
 </body>
