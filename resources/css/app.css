@@ -4,25 +4,10 @@
 
 @import "tailwindcss/utilities";
 
-h1 {
-    color: #333;
-    font-size: 24px;
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
 }
-
-ul {
-    list-style-type: none;
-    padding: 0;
-}
-
-ul li {
-    margin-bottom: 10px;
-}
-
-a {
-    text-decoration: none;
-    color: blue;
-}
-
-a:hover {
-    text-decoration: underline;
+.doodle-card:hover {
+    animation: bounce 0.5s ease;
 }

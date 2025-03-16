@@ -17,6 +17,7 @@ Route::get('/bible/{verse}', [BibleController::class, 'show']);
 
 
 Route::get('/study', [StudyController::class, 'index'])->name('study.index');
+Route::get('/study/{study}', [StudyController::class, 'show'])->name('study.show');
 Route::get('/devotions', [DevotionController::class, 'index'])->name('devotion.index');
 Route::get('/devotions/{id}', [DevotionController::class, 'show'])->name('devotion.show');
 
