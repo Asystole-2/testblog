@@ -60,13 +60,13 @@
             <!-- Community Card -->
             <div class="p-6 bg-white hover:bg-yellow-100 transition duration-300 rounded-lg doodle-card">
                 <h3 class="text-2xl font-semibold">Community</h3>
-                <p class="mt-2 text-sm">A blog section for everyone to communicate the lessons, confusions, or simply connect!</p>
+                <p class="mt-2 text-sm">A blog section for everyone to communicate lessons, share confusions, or simply connect!</p>
             </div>
 
             <!-- Activities Card (Optional) -->
             <div class="p-6 bg-white hover:bg-yellow-100 transition duration-300 rounded-lg doodle-card">
-                <h3 class="text-2xl font-semibold">Activities</h3>
-                <p class="mt-2 text-sm">Fun and interactive Bible-based activities</p>
+                <h3 class="text-2xl font-semibold">Kid Friendly Space</h3>
+                <p class="mt-2 text-sm">Fun and colourful to encourage the younger audience to engage in the word through a vibrant medium</p>
             </div>
         </div>
     </div>
