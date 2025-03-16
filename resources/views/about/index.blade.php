@@ -44,10 +44,21 @@
                 <li>Fund missionary trips and outreach programs.</li>
                 <li>Develop interactive tools and apps for Bible study.</li>
             </ul>
-            <a href="/donate"
-               class="mt-6 inline-block doodle-button text-lg font-semibold py-3 px-8">
-                Donate Now
-            </a>
+            <!-- PayPal Button Container -->
+            <div id="donate-button-container" class="mt-6 flex justify-center">
+                <div id="donate-button" class="custom-paypal-button"></div>
+            </div>
+            <script src="https://www.paypalobjects.com/donate/sdk/donate-sdk.js" charset="UTF-8"></script>
+            <script>
+                PayPal.Donation.Button({
+                    env:'production',
+                    hosted_button_id:'UMAAEW6SHQAC8',
+                    image: {
+                        alt:'Donate with PayPal button',
+                        title:'PayPal - The safer, easier way to pay online!',
+                    }
+                }).render('#donate-button');
+            </script>
         </div>
 
         <!-- Educating Kids Section -->
@@ -94,4 +105,27 @@
             </a>
         </div>
     </div>
+
+    <!-- Custom CSS for PayPal Button -->
+    <style>
+        .custom-paypal-button {
+            background-color: #ffcc00; /* Yellow background */
+            border: 2px solid #333; /* Dark border */
+            border-radius: 15px; /* Rounded corners */
+            padding: 10px 20px; /* Padding for better spacing */
+            box-shadow: 5px 5px 0 #333; /* Doodle-style shadow */
+            transition: all 0.3s ease; /* Smooth hover effect */
+        }
+
+        .custom-paypal-button:hover {
+            background-color: #ff6f61; /* Change color on hover */
+            transform: translateY(-2px); /* Slight lift on hover */
+            box-shadow: 7px 7px 0 #333; /* Enhanced shadow on hover */
+        }
+
+        .custom-paypal-button img {
+            display: block; /* Ensure the image is centered */
+            margin: 0 auto; /* Center the image horizontally */
+        }
+    </style>
 @endsection
