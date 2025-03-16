@@ -47,12 +47,7 @@
         }
         /* New Background Images */
         .hero-bg {
-            background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTs03M5bp7Ghk1kDljnzkt5A7abaVFrM5uWlA&s");
-            background-size: cover;
-            background-position: center;
-        }
-        .about-bg {
-            background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSAsKInIHWKUczYySHa5xVSPYKQx4rXJAVkCA&s");
+            background-image: url("https://t3.ftcdn.net/jpg/06/33/38/88/360_F_633388889_VEg0OqXK3ZRAz22w4zOK7K1FWpbCi7Mg.jpg");
             background-size: cover;
             background-position: center;
         }

@@ -4,7 +4,7 @@
     <!-- Hero Section -->
     <div class="relative h-screen flex items-center justify-center text-center text-white hero-bg">
         <div class="absolute inset-0 bg-black bg-opacity-50"></div>
-        <div class="relative z-10 w-4/5">
+        <div class="relative z-6 w-4/5">
             <h1 class="text-6xl font-bold uppercase font-fredoka drop-shadow-lg">
                 Welcome to Bible Doodle!
             </h1>
@@ -19,17 +19,18 @@
     </div>
 
     <!-- About Section -->
-    <div class="container mx-auto py-16 px-4 sm:px-12 about-bg">
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+    <div class="container mx-auto py-8 px-6 sm:px-8 about-bg">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+            <!-- Image Container -->
             <div class="rounded-lg shadow-lg overflow-hidden">
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTzNuua3SijZu_xdn0mITHg1PIrB4YSrQhCcw&s"
-                     class="w-full h-full object-cover" alt="Ancient Bible">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTs03M5bp7Ghk1kDljnzkt5A7abaVFrM5uWlA&s"
+                     class="w-[735px] h-[735px] object-cover" alt="Ancient Bible">
             </div>
             <div>
-                <h2 class="text-4xl font-bold text-gray-800 font-fredoka">
+                <h2 class="text-3xl font-bold text-gray-800 font-fredoka">
                     What is Bible Doodle?
                 </h2>
-                <p class="mt-4 text-gray-600 text-lg leading-relaxed">
+                <p class="mt-4 text-gray-600 text-base leading-relaxed">
                     Bible Doodle is a fun and interactive way to learn about the Bible. With colorful designs, engaging stories, and creative activities, we make Bible study exciting for everyone!
                 </p>
                 <a href="{{ route('about') }}"
@@ -41,7 +42,7 @@
     </div>
 
     <!-- Study Categories -->
-    <div class="bg-yellow-300 text-gray-800 text-center py-16">
+    <div class="bg-yellow-300 text-gray-800 text-center py-12">
         <h2 class="text-3xl font-bold font-fredoka">What We Offer</h2>
         <div class="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 px-6 sm:px-12">
             <!-- Devotions Card -->
