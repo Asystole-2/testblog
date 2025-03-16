@@ -40,7 +40,7 @@
                     <span class="text-gray-800">Phone: (123) 456-7890</span>
                 </li>
                 <li>
-                    <a href="/contact" class="text-gray-800 hover:text-gray-600 transition">Contact Us</a>
+                    <span class="text-gray-800 hover:text-gray-600 transition">Email: graceandmercy@gmail.com </span>
                 </li>
             </ul>
         </div>
