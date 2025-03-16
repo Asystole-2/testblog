@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Study;
+use Illuminate\Http\Request;
 
 class StudyController extends Controller
 {
