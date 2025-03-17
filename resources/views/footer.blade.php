@@ -13,7 +13,7 @@
                     <a href="/blog" class="text-gray-800 hover:text-gray-600 transition">Blog</a>
                 </li>
                 <li>
-                    <a href="/devotion" class="text-gray-800 hover:text-gray-600 transition">Devotions</a>
+                    <a href="/devotions" class="text-gray-800 hover:text-gray-600 transition">Devotions</a>
                 </li>
                 <li>
                     <a href="/study" class="text-gray-800 hover:text-gray-600 transition">Bible Studies</a>
