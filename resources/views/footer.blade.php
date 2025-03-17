@@ -13,10 +13,10 @@
                     <a href="/blog" class="text-gray-800 hover:text-gray-600 transition">Blog</a>
                 </li>
                 <li>
-                    <a href="/devotions" class="text-gray-800 hover:text-gray-600 transition">Devotions</a>
+                    <a href="/study" class="text-gray-800 hover:text-gray-600 transition">Bible Studies</a>
                 </li>
                 <li>
-                    <a href="/study" class="text-gray-800 hover:text-gray-600 transition">Bible Studies</a>
+                    <a href="/theology" class="text-gray-800 hover:text-gray-600 transition">Theology & History</a>
                 </li>
                 <li>
                     <a href="/about" class="text-gray-800 hover:text-gray-600 transition">About Us</a>
@@ -52,16 +52,16 @@
             </h3>
             <ul class="space-y-2">
                 <li>
-                    <a href="/devotion/faith-in-trials" class="text-gray-800 hover:text-gray-600 transition">Faith in Trials</a>
+                    <a href="http://127.0.0.1:8000/study/2" class="text-gray-800 hover:text-gray-600 transition">Power of Prayer</a>
                 </li>
                 <li>
-                    <a href="/devotion/strength-in-the-word" class="text-gray-800 hover:text-gray-600 transition">Strength in the Word</a>
+                    <a href="http://127.0.0.1:8000/study/6" class="text-gray-800 hover:text-gray-600 transition">The Amour of God</a>
                 </li>
                 <li>
-                    <a href="/study/gods-promises" class="text-gray-800 hover:text-gray-600 transition">God’s Promises</a>
+                    <a href="http://127.0.0.1:8000/study/5" class="text-gray-800 hover:text-gray-600 transition">The fruit of the Spirit</a>
                 </li>
                 <li>
-                    <a href="/study/prayer-life" class="text-gray-800 hover:text-gray-600 transition">Building a Prayer Life</a>
+                    <a href="http://127.0.0.1:8000/study/1" class="text-gray-800 hover:text-gray-600 transition">Faith in God</a>
                 </li>
             </ul>
         </div>

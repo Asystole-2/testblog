@@ -5,22 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>{{ config('app.name', 'Bible Doodle') }}</title>
-    <!-- Fonts -->
+    <!-- Fonts & Icons -->
     <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&family=Fredoka+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Styles -->
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
     <!-- Custom Styles -->
     <style>
+        /* Original Body CSS */
         body {
             font-family: 'Comic Neue', cursive;
             background-color: #f9fafb;
         }
         .doodle-bg {
             background-image: url("https://www.transparenttextures.com/patterns/light-toast.png");
-        }
-        .doodle-header {
-            background-color: mediumpurple;
-            border-bottom: 5px dashed #ffcc00;
         }
         .doodle-button {
             background-color: skyblue;
@@ -45,44 +43,175 @@
             transform: translateY(-5px);
             box-shadow: 10px 10px 0 #333;
         }
-        /* New Background Images */
         .hero-bg {
             background-image: url("https://t3.ftcdn.net/jpg/06/33/38/88/360_F_633388889_VEg0OqXK3ZRAz22w4zOK7K1FWpbCi7Mg.jpg");
             background-size: cover;
             background-position: center;
         }
+
+        /* New Header CSS */
+        .doodle-header {
+            background: linear-gradient(135deg, #9370DB 0%, #7B68EE 100%);
+            border-bottom: 5px dashed #FFD700;
+            position: relative;
+        }
+        @media (min-width: 769px) {
+            .doodle-header {
+                overflow: hidden;
+            }
+        }
+        .logo {
+            font-family: 'Fredoka One', cursive;
+            text-shadow: 3px 3px 0 #FFD700;
+            transition: transform 0.3s ease;
+        }
+        .logo:hover {
+            transform: rotate(-3deg) scale(1.05);
+        }
+        .nav-link {
+            position: relative;
+            padding: 8px 15px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background: #FFD700;
+            transition: width 0.3s ease;
+        }
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        .mobile-menu-btn {
+            display: none;
+            background: #FFD700;
+            border: 2px solid #333;
+            border-radius: 10px;
+            padding: 10px;
+            box-shadow: 3px 3px 0 #333;
+        }
+        @media (max-width: 768px) {
+            .nav-desktop { display: none; }
+            .mobile-menu-btn { display: block; }
+            .mobile-menu {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: linear-gradient(135deg, #9370DB 0%, #7B68EE 100%);
+                z-index: 1000;
+                padding: 1rem;
+                transform-origin: top;
+                animation: menuSlide 0.3s ease-out;
+            }
+            @keyframes menuSlide {
+                from { transform: translateY(-20px); opacity: 0; }
+                to { transform: translateY(0); opacity: 1; }
+            }
+            .mobile-nav {
+                display: flex;
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
     </style>
 </head>
 <body class="doodle-bg">
 <div id="app">
-    <!-- Header -->
-    <header class="doodle-header py-6 shadow-md">
+
+    <!-- Enhanced Header -->
+    <header class="doodle-header py-4 shadow-lg">
         <div class="container mx-auto flex justify-between items-center px-6">
-            <div>
-                <a href="{{ url('/') }}" class="text-3xl font-bold text-white no-underline font-fredoka">
-                    BibleDoodle❤✍
+            <!-- Logo -->
+            <a href="{{ url('/') }}" class="logo text-3xl text-white">
+                BibleDoodle ✍️
+            </a>
+
+            <!-- Desktop Navigation -->
+            <nav class="nav-desktop flex items-center gap-6">
+                <a class="nav-link text-white text-lg" href="{{ route('blog.index') }}">
+                    <i class="fas fa-pencil-alt"></i> Blog
                 </a>
-            </div>
-            <nav class="space-x-6 text-white text-sm sm:text-base">
-                <a class="no-underline hover:text-yellow-300 transition" href="{{ route('blog.index') }}">Blog</a>
-                <a class="no-underline hover:text-yellow-300 transition" href="{{ route('devotion.index') }}">Devotions</a>
-                <a class="no-underline hover:text-yellow-300 transition" href="{{ route('study.index') }}">Studies</a>
-                <a class="no-underline hover:text-yellow-300 transition" href="{{ route('about') }}">About</a>
-                @guest
-                    <a class="no-underline hover:text-yellow-300 transition" href="{{ route('login') }}">{{ __('Login') }}</a>
-                    @if (Route::has('register'))
-                        <a class="no-underline hover:text-yellow-300 transition" href="{{ route('register') }}">{{ __('Register') }}</a>
-                    @endif
+                <a class="nav-link text-white text-lg" href="{{ route('study.index') }}">
+                    <i class="fas fa-book-open"></i> Studies
+                </a>
+                <!-- Add Theology link here -->
+                <a class="nav-link text-white text-lg" href="{{ route('theology') }}">
+                    <i class="fas fa-church"></i> Theology & History
+                </a>
+                <a class="nav-link text-white text-lg" href="{{ route('about') }}">
+                    <i class="fas fa-heart"></i> About
+                </a>
+
+                @auth
+                    <div class="relative group">
+                        <a class="nav-link text-white text-lg" href="{{ route('profile') }}">
+                            <i class="fas fa-user"></i> {{ Auth::user()->name }}
+                        </a>
+                    </div>
                 @else
-                    <span class="text-white font-semibold">{{ Auth::user()->name }}</span>
-                    <a href="{{ route('logout') }}"
-                       class="no-underline hover:text-yellow-300 transition"
+                    <div class="flex gap-4">
+                        <a class="doodle-button px-6 py-2 text-lg" href="{{ route('login') }}">
+                            <i class="fas fa-key"></i> Login
+                        </a>
+                        @if (Route::has('register'))
+                            <a class="doodle-button px-6 py-2 text-lg bg-pink-400" href="{{ route('register') }}">
+                                <i class="fas fa-user-plus"></i> Register
+                            </a>
+                        @endif
+                    </div>
+                @endauth
+            </nav>
+
+            <!-- Mobile Menu Button -->
+            <button class="mobile-menu-btn text-2xl" id="mobileMenuButton">
+                <i class="fas fa-bars text-purple-800"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div class="mobile-menu hidden container mx-auto px-6 py-4" id="mobileMenu">
+            <nav class="mobile-nav">
+                <a class="nav-link text-white text-lg" href="{{ route('blog.index') }}">
+                    <i class="fas fa-pencil-alt"></i> Blog
+                </a>
+                <a class="nav-link text-white text-lg" href="{{ route('study.index') }}">
+                    <i class="fas fa-book-open"></i> Studies
+                </a>
+                <!-- Add Theology link here -->
+                <a class="nav-link text-white text-lg" href="{{ route('theology') }}">
+                    <i class="fas fa-church"></i> Theology & History
+                </a>
+                <a class="nav-link text-white text-lg" href="{{ route('about') }}">
+                    <i class="fas fa-heart"></i> About
+                </a>
+
+                @auth
+                    <a class="nav-link text-white text-lg" href="{{ route('profile') }}">
+                        <i class="fas fa-user"></i> Profile
+                    </a>
+                    <a class="nav-link text-white text-lg" href="{{ route('logout') }}"
                        onclick="event.preventDefault();
-                                    document.getElementById('logout-form').submit();">{{ __('Logout') }}</a>
-                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="hidden">
-                        {{ csrf_field() }}
-                    </form>
-                @endguest
+                                    document.getElementById('logout-form').submit();">
+                        <i class="fas fa-sign-out-alt"></i> Logout
+                    </a>
+                @else
+                    <a class="nav-link text-white text-lg" href="{{ route('login') }}">
+                        <i class="fas fa-key"></i> Login
+                    </a>
+                    @if (Route::has('register'))
+                        <a class="nav-link text-white text-lg" href="{{ route('register') }}">
+                            <i class="fas fa-user-plus"></i> Register
+                        </a>
+                    @endif
+                @endauth
             </nav>
         </div>
     </header>
@@ -95,5 +224,35 @@
     <!-- Footer -->
     @include('footer')
 </div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const mobileMenuButton = document.getElementById('mobileMenuButton');
+        const mobileMenu = document.getElementById('mobileMenu');
+
+        // Toggle menu
+        mobileMenuButton.addEventListener('click', (e) => {
+            e.stopPropagation();
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!mobileMenu.contains(e.target) && !mobileMenuButton.contains(e.target)) {
+                mobileMenu.classList.add('hidden');
+            }
+        });
+
+        // Close menu on resize and orientation change
+        window.addEventListener('resize', handleResize);
+        window.addEventListener('orientationchange', handleResize);
+
+        function handleResize() {
+            if (window.innerWidth > 768) {
+                mobileMenu.classList.add('hidden');
+            }
+        }
+    });
+</script>
 </body>
 </html>
