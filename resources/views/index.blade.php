@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+
     <!-- Hero Section -->
     <div class="relative h-screen flex items-center justify-center text-center text-white hero-bg">
         <div class="absolute inset-0 bg-black bg-opacity-50"></div>

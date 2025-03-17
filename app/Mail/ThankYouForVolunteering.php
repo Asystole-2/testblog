@@ -21,7 +21,8 @@ class ThankYouForVolunteering extends Mailable
 
     public function build()
     {
-        return $this->subject('Thank You for Volunteering with Bible Doodle!')
+        return $this->from(config('mail.from.address'), config('mail.from.name'))
+            ->subject('Thank You for Volunteering with Bible Doodle!')
             ->view('emails.thank_you');
     }
 }

@@ -92,6 +92,7 @@
         </div>
 
         <!-- Call to Action -->
+        <!-- Call to Action -->
         <div class="text-center mt-12">
             <h2 class="text-4xl font-bold text-gray-800 font-fredoka mb-6">
                 Join Us in Our Mission!
@@ -99,12 +100,47 @@
             <p class="text-gray-600 text-lg leading-relaxed mb-8">
                 Whether through prayer, donations, or volunteering, you can be a part of spreading God's word to the world.
             </p>
-            <a href="/get-involved"
-               class="inline-block doodle-button text-lg font-semibold py-3 px-8">
-                Get Involved
-            </a>
+
+            <div class="max-w-md mx-auto bg-white p-8 rounded-lg shadow-lg doodle-card" style="border: 3px solid #2d3748;">
+                <form method="POST" action="{{ route('signup.store') }}">
+                    @csrf
+
+                    <div class="mb-6">
+                        <label class="block text-gray-700 text-lg font-semibold mb-2" style="font-family: 'Comic Neue', cursive;">
+                            Your Name:
+                        </label>
+                        <input type="text" name="name" value="{{ old('name') }}" required
+                               class="w-full px-4 py-2 rounded-lg border-2 border-gray-300 focus:outline-none focus:border-purple-600"
+                               style="font-family: 'Comic Neue', cursive;">
+                        @error('name')
+                        <span class="text-red-500 text-sm">{{ $message }}</span>
+                        @enderror
+                    </div>
+
+                    <div class="mb-6">
+                        <label class="block text-gray-700 text-lg font-semibold mb-2" style="font-family: 'Comic Neue', cursive;">
+                            Your Email:
+                        </label>
+                        <input type="email" name="email" value="{{ old('email') }}" required
+                               class="w-full px-4 py-2 rounded-lg border-2 border-gray-300 focus:outline-none focus:border-purple-600"
+                               style="font-family: 'Comic Neue', cursive;">
+                        @error('email')
+                        <span class="text-red-500 text-sm">{{ $message }}</span>
+                        @enderror
+                    </div>
+
+                    <button type="submit"
+                            class="w-full py-3 px-6 bg-purple-600 hover:bg-purple-700 text-white text-lg font-bold rounded-lg transition-all duration-300 transform hover:scale-105"
+                            style="font-family: 'Comic Neue', cursive; box-shadow: 4px 4px 0 #2d3748;">
+                        Join Now! 🎨
+                    </button>
+                </form>
+            </div>
+
+            <p class="mt-6 text-gray-600 text-sm" style="font-family: 'Comic Neue', cursive;">
+                "Each of you should use whatever gift you have received to serve others..." - 1 Peter 4:10
+            </p>
         </div>
-    </div>
 
     <!-- Custom CSS for PayPal Button -->
     <style>
