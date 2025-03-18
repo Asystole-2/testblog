@@ -1,82 +1,124 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="w-4/5 m-auto text-center">
-    <div class="py-15 border-b border-gray-200">
-        <h1 class="text-6xl">
-            Blog Posts
-        </h1>
-    </div>
-</div>
+    <div class="container mx-auto px-4 py-8">
+        <!-- Header -->
+        <div class="text-center mb-12">
+            <h1 class="text-5xl font-fredoka text-purple-800 mb-4 doodle-header-gradient py-4 rounded-xl">
+                Blog Posts
+            </h1>
 
-@if (session()->has('message'))
-    <div class="w-4/5 m-auto mt-10 pl-2">
-        <p class="w-2/6 mb-4 text-gray-50 bg-green-500 rounded-2xl py-4">
-            {{ session()->get('message') }}
-        </p>
-    </div>
-@endif
-
-@if (Auth::check())
-    <div class="pt-15 w-4/5 m-auto">
-        <a
-            href="/blog/create"
-            class="bg-blue-500 uppercase bg-transparent text-gray-100 text-xs font-extrabold py-3 px-5 rounded-3xl">
-            Create post
-        </a>
-    </div>
-@endif
-
-@foreach ($posts as $post)
-{{--    {{ dd($post) }}--}}
-    <div class="sm:grid grid-cols-2 gap-20 w-4/5 mx-auto py-15 border-b border-gray-200">
-        <div>
-            <img src="{{ asset('images/' . $post->image_path) }}" alt="">
-        </div>
-        <div>
-            <h2 class="text-gray-700 font-bold text-5xl pb-4">
-                {{ $post->title }}
-            </h2>
-
-            <span class="text-gray-500">
-                By <span class="font-bold italic text-gray-800">{{ $post->user->name }}</span>, Created on {{ date('jS M Y', strtotime($post->updated_at)) }}
-            </span>
-
-            <p class="text-xl text-gray-700 pt-8 pb-10 leading-8 font-light">
-                {{ $post->description }}
-            </p>
-
-            <a href="/blog/{{ $post->slug }}" class="uppercase bg-blue-500 text-gray-100 text-lg font-extrabold py-4 px-8 rounded-3xl">
-                Keep Reading
-            </a>
-
-            @if (isset(Auth::user()->id) && Auth::user()->id == $post->user_id)
-                <span class="float-right">
-                    <a
-                        href="/blog/{{ $post->slug }}/edit"
-                        class="text-gray-700 italic hover:text-gray-900 pb-1 border-b-2">
-                        Edit
-                    </a>
-                </span>
-
-                <span class="float-right">
-                     <form
-                        action="/blog/{{ $post->slug }}"
-                        method="POST">
-                        @csrf
-                        @method('delete')
-
-                        <button
-                            class="text-red-500 pr-3"
-                            type="submit">
-                            Delete
-                        </button>
-
-                    </form>
-                </span>
+            @if (Auth::check())
+                <a href="/blog/create" class="doodle-button inline-block px-8 py-3 text-lg mb-8">
+                    ✍️ Create Post
+                </a>
             @endif
         </div>
-    </div>
-@endforeach
 
+        <!-- Success Message -->
+        @if (session()->has('message'))
+            <div class="doodle-alert-success max-w-2xl mx-auto mb-8">
+                {{ session()->get('message') }}
+            </div>
+        @endif
+
+        <!-- Posts Grid -->
+        <div class="space-y-8 max-w-4xl mx-auto">
+            @foreach ($posts as $post)
+                <div class="doodle-card p-6 rounded-2xl shadow-xl">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+                        <!-- Image Container -->
+                        <div class="h-64 md:h-96 overflow-hidden rounded-xl border-4 border-purple-200">
+                            <img src="{{ asset('images/' . $post->image_path) }}" alt="{{ $post->title }}"
+                                 class="w-full h-full object-cover hover:scale-105 transition-transform">
+                        </div>
+
+                        <!-- Content Container -->
+                        <div class="flex flex-col justify-between h-64 md:h-96 overflow-hidden transition-all duration-300">
+                            <div>
+                                <h2 class="text-3xl font-fredoka text-purple-900 mb-4">
+                                    {{ $post->title }}
+                                </h2>
+
+                                <div class="mb-4">
+                            <span class="text-sm font-comic-neue text-purple-600">
+                                By <span class="font-bold">{{ $post->user->name }}</span>,
+                                {{ $post->updated_at->format('F jS, Y') }}
+                            </span>
+                                </div>
+
+                                <!-- Collapsible Content -->
+                                <div class="post-content font-comic-neue text-gray-600 text-lg overflow-y-hidden max-h-32">
+                                    <p class="leading-relaxed">
+                                        {{ $post->description }}
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+                                <a href="/blog/{{ $post->slug }}" class="doodle-button px-6 py-4 text-lg">
+                                    📖 Keep Reading
+                                </a>
+
+                                @if (isset(Auth::user()->id) && Auth::user()->id == $post->user_id)
+                                    <div class="flex gap-4">
+                                        <a href="/blog/{{ $post->slug }}/edit"
+                                           class="doodle-link text-sm px-4 py-2 border-2 border-purple-200 rounded-lg">
+                                            ✏️ Edit
+                                        </a>
+                                        <form action="/blog/{{ $post->slug }}" method="POST">
+                                            @csrf
+                                            @method('delete')
+                                            <button type="submit"
+                                                    class="doodle-link text-red-600 text-sm px-4 py-2 border-2 border-red-100 rounded-lg hover:bg-red-50">
+                                                🗑 Delete
+                                            </button>
+                                        </form>
+                                    </div>
+                                @endif
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            @endforeach
+        </div>
+    </div>
+
+    <script>
+        function toggleReadMore(button) {
+            const card = button.closest('.doodle-card');
+            const content = card.querySelector('.post-content');
+            const isExpanded = content.classList.contains('max-h-32');
+
+            content.classList.toggle('max-h-32', !isExpanded);
+            content.classList.toggle('max-h-[500px]', isExpanded);
+            button.textContent = isExpanded ? '📖 Read More' : '📖 Read Less';
+
+            // Scroll to show more content if needed
+            if(isExpanded) {
+                card.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }
+        }
+    </script>
+
+    <style>
+        .post-content {
+            transition: max-height 0.3s ease-in-out;
+            overflow-y: hidden;
+        }
+
+        .post-content::-webkit-scrollbar {
+            width: 5px;
+        }
+
+        .post-content::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 4px;
+        }
+
+        .post-content::-webkit-scrollbar-thumb {
+            background: #9370DB;
+            border-radius: 4px;
+        }
+    </style>
 @endsection
