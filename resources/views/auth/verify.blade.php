@@ -1,41 +1,30 @@
+
+{{-- Verify Email View --}}
 @extends('layouts.app')
 
 @section('content')
-<main class="sm:container sm:mx-auto sm:max-w-lg sm:mt-10">
-    <div class="flex">
-        <div class="w-full">
+    <main class="container mx-auto px-4 py-8 max-w-lg">
+        <div class="doodle-card bg-white p-6 rounded-2xl shadow-xl">
+            <header class="doodle-header-gradient text-white text-center py-4 rounded-xl mb-6">
+                <h1 class="text-3xl font-fredoka">{{ __('Verify Email') }}</h1>
+            </header>
 
-            @if (session('resent'))
-            <div class="text-sm border border-t-8 rounded text-green-700 border-green-600 bg-green-100  px-3 py-4 mb-4"
-                role="alert">
-                {{ __('A fresh verification link has been sent to your email address.') }}
+            <div class="space-y-4 font-comic-neue">
+                @if (session('resent'))
+                    <div class="doodle-alert-success">
+                        {{ __('Verification link sent!') }}
+                    </div>
+                @endif
+
+                <p>{{ __('Check your email for verification link') }}</p>
+
+                <form method="POST" action="{{ route('verification.resend') }}">
+                    @csrf
+                    <button type="submit" class="doodle-link">
+                        {{ __('Resend Verification Email') }}
+                    </button>
+                </form>
             </div>
-            @endif
-
-            <section class="flex flex-col break-words bg-white sm:border-1 sm:rounded-md sm:shadow-sm sm:shadow-lg">
-                <header class="font-semibold bg-gray-200 text-gray-700 py-5 px-6 sm:py-6 sm:px-8 sm:rounded-t-md">
-                    {{ __('Verify Your Email Address') }}
-                </header>
-
-                <div class="w-full flex flex-wrap text-gray-700 leading-normal text-sm p-6 space-y-4 sm:text-base sm:space-y-6">
-                    <p>
-                        {{ __('Before proceeding, please check your email for a verification link.') }}
-                    </p>
-
-                    <p>
-                        {{ __('If you did not receive the email') }}, <a
-                            class="text-blue-500 hover:text-blue-700 no-underline hover:underline cursor-pointer"
-                            onclick="event.preventDefault(); document.getElementById('resend-verification-form').submit();">{{ __('click here to request another') }}</a>.
-                    </p>
-
-                    <form id="resend-verification-form" method="POST" action="{{ route('verification.resend') }}"
-                        class="hidden">
-                        @csrf
-                    </form>
-                </div>
-
-            </section>
         </div>
-    </div>
-</main>
+    </main>
 @endsection

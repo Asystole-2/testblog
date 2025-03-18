@@ -26,6 +26,7 @@
             border: 2px solid #333;
             border-radius: 15px;
             transition: all 0.3s ease;
+            margin: 8px;
         }
         .doodle-button:hover {
             background-color: plum;
@@ -158,6 +159,47 @@
             background: #7B68EE !important;
             color: white !important;
             border-color: #5A4B9D;
+        }
+        /* Custom Form Elements */
+        .doodle-header-gradient {
+            background: linear-gradient(135deg, #9370DB 0%, #7B68EE 100%);
+            border-bottom: 3px dashed #FFD700;
+        }
+
+        .doodle-input {
+            @apply border-2 border-gray-300 rounded-xl p-3 focus:ring-2 focus:ring-purple-200 transition-all;
+            focus:border-purple-500;
+        }
+
+        .doodle-checkbox {
+            @apply rounded border-2 border-gray-300 text-purple-600 focus:ring-purple-500;
+        }
+
+        .doodle-alert-success {
+            @apply bg-green-100 border-l-4 border-green-500 text-green-700 p-4 rounded-lg;
+        }
+
+        .doodle-link {
+            @apply text-purple-600  font-bold transition-colors;
+            hover:text-purple-800;
+        }
+        .doodle-header-gradient {
+            background: linear-gradient(135deg, #7B68EE 0%, #9370DB 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 2px 2px 0 #FFD700;
+        }
+
+        .post-image-hover {
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .doodle-alert-success {
+            @apply bg-green-100 border-l-4 border-green-500 text-green-700 p-4 rounded-lg;
+        }
+
+        .post-meta {
+            @apply text-sm font-comic-neue text-purple-600;
         }
     </style>
 </head>

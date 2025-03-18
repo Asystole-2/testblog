@@ -1,71 +1,41 @@
 @extends('layouts.app')
 
 @section('content')
-<main class="sm:container sm:mx-auto sm:max-w-lg sm:mt-10">
-    <div class="flex">
-        <div class="w-full">
-            <section class="flex flex-col break-words bg-white sm:border-1 sm:rounded-md sm:shadow-sm sm:shadow-lg">
+    <main class="container mx-auto px-4 py-8 max-w-lg">
+        <div class="doodle-card bg-white p-6 rounded-2xl shadow-xl">
+            <header class="doodle-header-gradient text-white text-center py-4 rounded-xl mb-6">
+                <h1 class="text-3xl font-fredoka">{{ __('Reset Password') }}</h1>
+            </header>
 
-                <header class="font-semibold bg-gray-200 text-gray-700 py-5 px-6 sm:py-6 sm:px-8 sm:rounded-t-md">
+            <form class="space-y-6" method="POST" action="{{ route('password.update') }}">
+                @csrf
+                <input type="hidden" name="token" value="{{ $token }}">
+
+                <div class="space-y-2">
+                    <label class="block text-gray-700 font-comic-neue font-bold">{{ __('Email') }}</label>
+                    <input id="email" type="email" name="email"
+                           class="doodle-input w-full @error('email') border-red-500 @enderror"
+                           value="{{ $email ?? old('email') }}" required>
+                    @error('email')<p class="text-red-500 text-sm">{{ $message }}</p>@enderror
+                </div>
+
+                <div class="space-y-2">
+                    <label class="block text-gray-700 font-comic-neue font-bold">{{ __('New Password') }}</label>
+                    <input id="password" type="password" name="password"
+                           class="doodle-input w-full @error('password') border-red-500 @enderror" required>
+                    @error('password')<p class="text-red-500 text-sm">{{ $message }}</p>@enderror
+                </div>
+
+                <div class="space-y-2">
+                    <label class="block text-gray-700 font-comic-neue font-bold">{{ __('Confirm Password') }}</label>
+                    <input id="password-confirm" type="password" name="password_confirmation"
+                           class="doodle-input w-full" required>
+                </div>
+
+                <button type="submit" class="doodle-button w-full py-3">
                     {{ __('Reset Password') }}
-                </header>
-
-                <form class="w-full px-6 space-y-6 sm:px-10 sm:space-y-8" method="POST" action="{{ route('password.update') }}">
-                    @csrf
-
-                    <input type="hidden" name="token" value="{{ $token }}">
-
-                    <div class="flex flex-wrap">
-                        <label for="email" class="block text-gray-700 text-sm font-bold mb-2 sm:mb-4">
-                            {{ __('E-Mail Address') }}:
-                        </label>
-
-                        <input id="email" type="email"
-                            class="form-input w-full @error('email') border-red-500 @enderror" name="email"
-                            value="{{ $email ?? old('email') }}" required autocomplete="email" autofocus>
-
-                        @error('email')
-                        <p class="text-red-500 text-xs italic mt-4">
-                            {{ $message }}
-                        </p>
-                        @enderror
-                    </div>
-
-                    <div class="flex flex-wrap">
-                        <label for="password" class="block text-gray-700 text-sm font-bold mb-2 sm:mb-4">
-                            {{ __('Password') }}:
-                        </label>
-
-                        <input id="password" type="password"
-                            class="form-input w-full @error('password') border-red-500 @enderror" name="password"
-                            required autocomplete="new-password">
-
-                        @error('password')
-                        <p class="text-red-500 text-xs italic mt-4">
-                            {{ $message }}
-                        </p>
-                        @enderror
-                    </div>
-
-                    <div class="flex flex-wrap">
-                        <label for="password-confirm" class="block text-gray-700 text-sm font-bold mb-2 sm:mb-4">
-                            {{ __('Confirm Password') }}:
-                        </label>
-
-                        <input id="password-confirm" type="password" class="form-input w-full"
-                            name="password_confirmation" required autocomplete="new-password">
-                    </div>
-
-                    <div class="flex flex-wrap pb-8 sm:pb-10">
-                        <button type="submit"
-                        class="w-full select-none font-bold whitespace-no-wrap p-3 rounded-lg text-base leading-normal no-underline text-gray-100 bg-blue-500 hover:bg-blue-700 sm:py-4">
-                            {{ __('Reset Password') }}
-                        </button>
-                    </div>
-                </form>
-
-            </section>
+                </button>
+            </form>
         </div>
-    </div>
-</main>
+    </main>
 @endsection
