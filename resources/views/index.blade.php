@@ -12,7 +12,7 @@
             <p class="mt-5 text-lg text-yellow-300">
                 Explore the Bible in a fun and creative way!
             </p>
-            <a href="{{ route('devotion.index') }}"
+            <a href="{{ route('study.index') }}"
                class="mt-6 inline-block doodle-button text-lg font-bold py-3 px-8">
                 Start Exploring
             </a>

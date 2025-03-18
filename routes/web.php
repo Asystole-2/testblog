@@ -7,7 +7,7 @@ use App\Http\Controllers\PostsController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\BibleController;
 use App\Http\Controllers\StudyController;
-use App\Http\Controllers\DevotionController;
+use App\Http\Controllers\TheologyController;
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\SignupController;
 Route::get('/signup/success', function () {
@@ -22,8 +22,7 @@ Route::get('/bible/{verse}', [BibleController::class, 'show']);
 
 Route::get('/study', [StudyController::class, 'index'])->name('study.index');
 Route::get('/study/{study}', [StudyController::class, 'show'])->name('study.show');
-Route::get('/devotions', [DevotionController::class, 'index'])->name('devotion.index');
-Route::get('/devotions/{id}', [DevotionController::class, 'show'])->name('devotion.show');
+
 Route::get('/get-involved', [SignupController::class, 'create'])->name('signup.create');
 Route::post('/get-involved', [SignupController::class, 'store'])->name('signup.store');
 Route::get('/signup/success', function () {
@@ -31,8 +30,14 @@ Route::get('/signup/success', function () {
 })->name('signup.success');
 Route::get('/about', [AboutController::class, 'index'])->name('about');
 
-
-
+//Route::get('/theology', [TheologyController::class, 'index'])->name('theology');
+//Route::get('/theology/timeline', [TheologyController::class, 'timeline'])->name('theology.timeline');
+//Route::get('/theology/doctrine/{topic}', [TheologyController::class, 'doctrine'])->name('theology.doctrine');
+Route::prefix('theology')->group(function () {
+    Route::get('/', [TheologyController::class, 'index'])->name('theology');
+    Route::get('/timeline', [TheologyController::class, 'timeline'])->name('theology.timeline');
+    Route::get('/doctrine/{topic}', [TheologyController::class, 'doctrine'])->name('theology.doctrine');
+});
 
 
 /*

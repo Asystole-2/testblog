@@ -48,6 +48,29 @@
             background-size: cover;
             background-position: center;
         }
+        .doodle-timeline {
+            border-left: 4px solid #7B68EE;
+            margin-left: 1rem;
+            padding-left: 2rem;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 3rem;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -2.8rem;
+            top: 0;
+            width: 20px;
+            height: 20px;
+            background: #9370DB;
+            border: 3px solid #fff;
+            border-radius: 50%;
+            box-shadow: 0 0 0 3px #9370DB;
+        }
 
         /* New Header CSS */
         .doodle-header {
@@ -120,6 +143,21 @@
                 flex-direction: column;
                 gap: 1rem;
             }
+        }
+        .doctrine-nav-link {
+            transition: all 0.2s ease;
+            border: 2px solid #7B68EE;
+        }
+
+        .doctrine-nav-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 3px 3px 0 #333;
+        }
+
+        .active-doctrine {
+            background: #7B68EE !important;
+            color: white !important;
+            border-color: #5A4B9D;
         }
     </style>
 </head>
