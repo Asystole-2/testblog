@@ -10,6 +10,9 @@ use App\Http\Controllers\StudyController;
 use App\Http\Controllers\TheologyController;
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\SignupController;
+use App\Http\Controllers\ProfileController;
+
+
 Route::get('/signup/success', function () {
     return view('signup-success');
 })->name('signup.success');
@@ -37,6 +40,18 @@ Route::prefix('theology')->group(function () {
     Route::get('/', [TheologyController::class, 'index'])->name('theology');
     Route::get('/timeline', [TheologyController::class, 'timeline'])->name('theology.timeline');
     Route::get('/doctrine/{topic}', [TheologyController::class, 'doctrine'])->name('theology.doctrine');
+});
+
+
+Route::middleware('auth')->group(function () {
+    // Profile routes
+    Route::get('/profile', [ProfileController::class, 'show'])->name('profile');
+    Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::put('/profile', [ProfileController::class, 'update'])->name('profile.update');
+
+    // Logout route
+    Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])
+        ->name('logout');
 });
 
 
