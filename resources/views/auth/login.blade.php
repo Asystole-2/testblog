@@ -47,6 +47,27 @@
                     {{ __('Login') }}
                 </button>
 
+                <div class="relative my-6">
+                    <div class="absolute inset-0 flex items-center">
+                        <div class="w-full border-t-2 border-dashed border-gray-300"></div>
+                    </div>
+                    <div class="relative flex justify-center text-sm">
+                        <span class="px-2 bg-white text-gray-500 font-comic-neue">Or continue with</span>
+                    </div>
+                </div>
+
+                <a href="{{ route('google.login') }}"
+                   class="doodle-button bg-red-500 hover:bg-red-600 text-white w-full py-3 text-lg flex items-center justify-center gap-2">
+                    <svg class="w-6 h-6" viewBox="0 0 24 24">
+                        <path fill="currentColor" d="M12.545 10.239v3.821h5.445c-.712 2.315-2.647 3.972-5.445 3.972a6.033 6.033 0 110-12.064c1.835 0 3.456.989 4.567 2.951l3.083-2.428C17.52 2.702 15.08 1.5 12.545 1.5c-4.779 0-8.727 3.536-8.727 8.5 0 4.687 3.445 8.5 8.727 8.5 4.898 0 8.182-3.405 8.182-8.295 0-1.305-.201-2.292-.201-2.292H12.545z"/>
+                    </svg>
+                    {{ __('Continue with Google') }}
+                </a>
+                @if ($errors->any())
+                    <div class="doodle-alert-error mb-4">
+                        {{ $errors->first() }}
+                    </div>
+                @endif
                 @if (Route::has('register'))
                     <p class="text-center mt-4 font-comic-neue">
                         {{ __("Don't have an account?") }}

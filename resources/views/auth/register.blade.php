@@ -47,7 +47,7 @@
 
                 <p class="text-center mt-4 font-comic-neue">
                     {{ __('Already have an account?') }}
-                    <a class="doodle-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                    <a class="doodle-button w-full py-1 px-3 text-lg"  href="{{ route('login') }}">{{ __('Login') }}</a>
                 </p>
             </form>
         </div>

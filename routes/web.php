@@ -11,6 +11,7 @@ use App\Http\Controllers\TheologyController;
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\SignupController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Auth\GoogleController;
 
 
 Route::get('/signup/success', function () {
@@ -55,6 +56,8 @@ Route::middleware('auth')->group(function () {
 });
 
 
+Route::get('/auth/google', [\App\Http\Controllers\Auth\GoogleController::class, 'redirectToGoogle'])->name('google.login');
+Route::get('/auth/google/callback', [\App\Http\Controllers\Auth\GoogleController::class, 'handleGoogleCallback']);
 /*
 |--------------------------------------------------------------------------
 | Web Routes

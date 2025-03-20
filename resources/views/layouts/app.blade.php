@@ -201,6 +201,63 @@
         .post-meta {
             @apply text-sm font-comic-neue text-purple-600;
         }
+        /* Add to your existing CSS */
+        .doodle-button.bg-red-500 {
+            border: 2px solid #333;
+            box-shadow: 3px 3px 0 #333;
+            transition: all 0.3s ease;
+        }
+
+        .doodle-button.bg-red-500:hover {
+            background-color: #e53e3e;
+            transform: translateY(-2px);
+            box-shadow: 5px 5px 0 #333;
+        }
+
+        .doodle-checkbox {
+            border: 2px solid #333;
+            border-radius: 5px;
+            width: 1.2em;
+            height: 1.2em;
+        }
+
+        .doodle-checkbox:checked {
+            background-color: mediumpurple;
+            border-color: #333;
+        }
+
+        .doodle-link {
+            color: mediumpurple;
+            text-decoration: underline solid mediumpurple;
+            transition: color 0.3s ease;
+        }
+
+        .doodle-link:hover {
+            color: #6b46c1;
+        }
+        .doodle-input {
+            border: 2px solid #333; /* Always black border */
+            border-radius: 8px;
+            padding: 0.75rem;
+            transition: all 0.3s ease;
+            outline: none;
+        }
+
+        .doodle-input:focus {
+            border-color: #9370DB; /* Purple when focused */
+            box-shadow: 0 0 0 3px rgba(147, 112, 219, 0.3); /* Purple glow effect */
+        }
+
+        /* Keep red border for errors */
+        .doodle-input.border-red-500 {
+            border-color: #ef4444;
+        }
+        .doodle-input.border-red-500:focus {
+            box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.3);
+        }
+        .doodle-alert-error {
+            @apply bg-red-100 border-l-4 border-red-500 text-red-700 p-4 rounded-lg;
+        }
     </style>
 </head>
 <body class="doodle-bg">
@@ -231,11 +288,16 @@
                 </a>
 
                 @auth
-                    <div class="relative group">
-                        <a class="nav-link text-white text-lg" href="{{ route('profile') }}">
-                            <i class="fas fa-user"></i> {{ Auth::user()->name }}
-                        </a>
-                    </div>
+                    <a class="nav-link text-white text-lg" href="{{ route('profile') }}">
+                        <i class="fas fa-user"></i> Profile
+                    </a>
+                    <!-- Mobile Logout Form -->
+                    <form method="POST" action="{{ route('logout') }}">
+                        @csrf
+                        <button type="submit" class="nav-link text-white text-lg w-full text-left">
+                            <i class="fas fa-sign-out-alt"></i> Logout
+                        </button>
+                    </form>
                 @else
                     <div class="flex gap-4">
                         <a class="doodle-button px-6 py-2 text-lg" href="{{ route('login') }}">
@@ -277,11 +339,13 @@
                     <a class="nav-link text-white text-lg" href="{{ route('profile') }}">
                         <i class="fas fa-user"></i> Profile
                     </a>
-                    <a class="nav-link text-white text-lg" href="{{ route('logout') }}"
-                       onclick="event.preventDefault();
-                                    document.getElementById('logout-form').submit();">
-                        <i class="fas fa-sign-out-alt"></i> Logout
-                    </a>
+                    <!-- Mobile Logout Form -->
+                    <form method="POST" action="{{ route('logout') }}">
+                        @csrf
+                        <button type="submit" class="nav-link text-white text-lg w-full text-left">
+                            <i class="fas fa-sign-out-alt"></i> Logout
+                        </button>
+                    </form>
                 @else
                     <a class="nav-link text-white text-lg" href="{{ route('login') }}">
                         <i class="fas fa-key"></i> Login
