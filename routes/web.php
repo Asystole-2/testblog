@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\CommentController;
+use App\Http\Controllers\ReactionController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PagesController;
 use App\Http\Controllers\PostsController;
@@ -55,6 +57,21 @@ Route::middleware('auth')->group(function () {
         ->name('logout');
 });
 
+Route::post('/posts/{post:slug}/reaction', [ReactionController::class, 'store'])
+    ->name('posts.reaction');
+
+Route::post('/posts/{post}/reaction', [ReactionController::class, 'store'])
+    ->middleware('auth');
+
+
+Route::post('/posts/{post}/reaction', [ReactionController::class, 'store'])
+    ->name('posts.reaction')
+    ->where('post', '[A-Za-z0-9\-]+');
+
+Route::post('/posts/{post}/comments', [CommentController::class, 'store'])
+    ->middleware('auth');
+
+Route::get('/blog', [PostsController::class, 'index'])->name('blog.index');
 
 Route::get('/auth/google', [\App\Http\Controllers\Auth\GoogleController::class, 'redirectToGoogle'])->name('google.login');
 Route::get('/auth/google/callback', [\App\Http\Controllers\Auth\GoogleController::class, 'handleGoogleCallback']);
