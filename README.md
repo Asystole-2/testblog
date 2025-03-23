@@ -1,6 +1,6 @@
 ## Laravel 8 Complete Blog
 
-•	Author:Ben Musemburiphp <br>
+•	Author:Ben Musemburi <br>
 
 ## Requirements
 •	PHP 7.3 or higher <br>
