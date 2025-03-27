@@ -32,7 +32,7 @@ bash
 Copy
 Edit
 git clone https://github.com/asystole_2/bible-website-laravel.git
-cd bible-website-laravel
+cd bible-website-laravel](https://github.com/Asystole-2/testblog.git)
 Install Dependencies:
 
 Install PHP dependencies using Composer:
